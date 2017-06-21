@@ -1,0 +1,15 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "tsimporter.emitSemicolon": false,
+    "tslint.autoFixOnSave": true,
+    "tsimporter.filesToScan": [
+        "**/*.ts",
+        "**/*.tsx",
+        "./node_modules/@types/**/index.d.ts"
+    ],
+    "autoimport.filesToScan": "**/*.{ts,tsx}",
+    "vsicons.presets.angular": false,
+    "editor.fontSize": 16,
+    "editor.fontFamily": "DejaVu Sans Mono"
+}
