@@ -1,6 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { IStoreState } from '../declarations'
+import { SCENE_TYPE } from './sence'
 import { fetchStartImage, recieveStatImage } from './startImage'
 
 const mockFetch: any = fetch
@@ -14,6 +15,7 @@ describe('test async action', () => {
         const mockCreateStore = configureMockStore<IStoreState>([thunk])
         const mockStore = mockCreateStore({
             startImage: { img: '', text: '' },
+            scene: { sceneType: SCENE_TYPE.START_IMAGE },
         })
 
         mockFetch.mockResponse(JSON.stringify(response))
