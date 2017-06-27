@@ -1,11 +1,13 @@
 import { shallow } from 'enzyme'
 import React from 'react'
-import { View } from 'react-native'
+import { SectionList } from 'react-native'
+import mockStore from '../../../store/index.mock'
 import List from './List'
 
-describe('test Swiper component', () => {
-    it('test Swiper', () => {
-        const wrapper = shallow(<List />)
-        expect(wrapper.type()).toBe(View)
+describe('test List component', () => {
+    it('test List', () => {
+        const ReduxList: any = List
+        const wrapper = shallow(<ReduxList store={mockStore()} />)
+        expect(wrapper.dive().type()).toBe(SectionList)
     })
 })

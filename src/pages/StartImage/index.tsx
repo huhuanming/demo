@@ -1,29 +1,27 @@
 import React from 'react'
 import { Image, Text } from 'react-native'
 import { connect } from 'react-redux'
+import { returntypeof } from 'react-redux-typescript'
 import { fetchStartImage } from '../../actions/startImage'
-import { IStartImage, IStoreState } from '../../declarations'
-
-interface IStateProps {
-    startImage: IStartImage
-}
-
-interface IDispatchProps {
-    fetchStartImage: () => void
-}
-
-interface IOwnProps {
-}
-
-type IProps = IStateProps & IDispatchProps & IOwnProps
+import { IStoreState } from '../../declarations'
 
 const mapStateToProps = (state: IStoreState) => ({
     startImage: state.startImage,
 })
 
+const mapStateToPropsType = returntypeof(mapStateToProps)
+type IStateProps = typeof mapStateToPropsType
+
 const mapDispatchToProps = {
     fetchStartImage,
 }
+
+type IDispatchProps = typeof mapDispatchToProps
+
+interface IOwnProps {
+}
+
+type IProps = IStateProps & IDispatchProps & IOwnProps
 
 export class StartImage extends React.Component<IProps, {}> {
 

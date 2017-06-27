@@ -1,5 +1,9 @@
 import React from 'react'
-import { SectionList, SectionListData, Text, View } from 'react-native'
+import { SectionList, SectionListData, Text, TouchableOpacity, View } from 'react-native'
+import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
+import { returntypeof } from 'react-redux-typescript'
+import { IStoreState } from '../../../declarations'
 
 const testSectionData = [
   [
@@ -315,7 +319,23 @@ interface ISectionData {
     date: string
 }
 
-class List extends React.Component<{}, {}> {
+const mapStateToProps = (_: IStoreState) => ({})
+
+const mapStateToPropsType = returntypeof(mapStateToProps)
+type IStateProps = typeof mapStateToPropsType
+
+const mapDispatchToProps = {
+  navigate: NavigationActions.navigate,
+}
+
+type IDispatchProps = typeof mapDispatchToProps
+
+interface IOwnProps {
+}
+
+type IProps = IStateProps & IDispatchProps & IOwnProps
+
+class List extends React.Component<IProps, {}> {
     render() {
         const sections = testSectionData.map((data) => ({
             data,
@@ -340,10 +360,24 @@ class List extends React.Component<{}, {}> {
     )
 
     private renderItem = (info: {item: ISectionData, index: number}) => (
-        <View style={{ height: 88 }}>
+        <TouchableOpacity onPress={this.handlePressItem(info.item)}>
+          <View style={{ height: 88 }}>
             <Text>{info.item.title}</Text>
-        </View>
+          </View>
+        </TouchableOpacity>
     )
+
+    private handlePressItem = (item: ISectionData) => () => {
+      this.props.navigate({
+        routeName: 'Article',
+        params: {
+          item,
+        },
+      })
+    }
 }
 
-export default List
+export default connect<IStateProps, IDispatchProps, IOwnProps>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(List)

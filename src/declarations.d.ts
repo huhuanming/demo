@@ -10,8 +10,14 @@ export interface ISCENE {
     sceneType: SCENE_TYPE
 }
 
+export interface IArticle {
+    image: string
+    content: string
+}
+
 export interface IStoreState {
     scene: ISCENE
     startImage: IStartImage
     router: NavigationState
+    article: IArticle
 }
