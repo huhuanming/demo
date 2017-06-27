@@ -2,7 +2,7 @@ import { recieveStatImage } from '../actions/startImage'
 import startImage from './startImage'
 
 const defaultValue = {
-    img: '',
+    img: 'https://ooo.0o0.ooo/2017/06/16/5942e6866f7ef.jpg',
     text: '',
 }
 

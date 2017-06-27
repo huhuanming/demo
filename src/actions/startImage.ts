@@ -1,10 +1,13 @@
 import { Dispatch } from 'redux'
 import { createAction } from 'redux-actions'
 import { IStartImage, IStoreState } from '../declarations'
+import { IExtraArgument } from '../middlewares/index'
 import { changeScene, SCENE_TYPE } from './sence'
 
-export const fetchStartImage = () => async (dispatch: Dispatch<IStoreState>) => {
-    const response = await fetch('http://10.0.0.10:8111/start-image')
+export const fetchStartImage = () => async (
+    dispatch: Dispatch<IStoreState>, _: () => IStoreState, extraArgument: IExtraArgument,
+) => {
+    const response = await extraArgument.ajax('/start-image')
     const json: IStartImage = await response.json()
     await dispatch(recieveStatImage(json))
     setTimeout(() => {

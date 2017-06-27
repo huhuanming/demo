@@ -1,48 +1,28 @@
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
-import { NavigationActions, NavigationNavigateActionCreator } from 'react-navigation'
+import { StatusBar, View } from 'react-native'
 import { connect } from 'react-redux'
+import List from './components/List'
+import Swiper from './components/Swiper'
 
-const mapStateToProps = () => ({
-})
+class Home extends React.Component<{}, {}> {
 
-const mapDispatchToProps = {
-    navigate: NavigationActions.navigate,
-}
-
-interface IStateProps {
-}
-
-interface IDispatchProps {
-    navigate: NavigationNavigateActionCreator
-}
-
-interface IOwnProps {
-}
-
-type IProps = IStateProps & IDispatchProps & IOwnProps
-
-class Home extends React.Component<IProps, {}> {
-
-    handlePress = () => {
-        this.props.navigate({
-            routeName: 'Article',
-        })
+    static navigationOptions = {
+        title: '今日要闻',
+        headerTintColor: 'white',
+        headerStyle: {
+            backgroundColor: '#0F88EB',
+        },
     }
 
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <TouchableOpacity
-                    style={{ width: 50, height: 50, backgroundColor: 'red' }}
-                    onPress={this.handlePress}
-                />
+                <StatusBar barStyle="light-content" />
+                <Swiper />
+                <List />
             </View>
         )
     }
 }
 
-export default connect<IStateProps, IDispatchProps, IOwnProps>(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Home)
+export default Home
